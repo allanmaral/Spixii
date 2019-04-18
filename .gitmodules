@@ -1,0 +1,3 @@
+[submodule "Spixii/ThirdParty/spdlog"]
+	path = Spixii/ThirdParty/spdlog
+	url = https://github.com/gabime/spdlog
