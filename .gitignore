@@ -37,3 +37,8 @@
 # Directories
 .vs/
 bin/
+
+# Visual Studio projects
+*.vcxproj
+*.vcxproj.filters
+*.sln
