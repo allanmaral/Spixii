@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Core.h"
+#include "Spixii/Core.h"
 
 namespace Spixii
 {

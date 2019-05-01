@@ -1,4 +1,6 @@
-#include <Spixii.h>
+#include "spxpch.h"
+
+#include "Spixii.h"
 
 class Sandbox : public Spixii::Application
 {

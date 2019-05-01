@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Event.h"
-
-#include <sstream>
+#include "Spixii/Events/Event.h"
 
 namespace Spixii
 {

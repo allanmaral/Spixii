@@ -18,6 +18,9 @@ project "Spixii"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin/obj/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "spxpch.h"
+	pchsource "Spixii/src/spxpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -26,6 +29,7 @@ project "Spixii"
 
 	includedirs
 	{
+		"%{prj.name}/src",
 		"%{prj.name}/ThirdParty/spdlog/include"
 	}
 

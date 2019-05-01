@@ -1,7 +1,8 @@
-#include "Application.h"
+#include "spxpch.h"
+#include "Spixii/Application.h"
 
-#include "Log.h"
-#include "Events/ApplicationEvent.h"
+#include "Spixii/Log.h"
+#include "Spixii/Events/ApplicationEvent.h"
 
 namespace Spixii
 {

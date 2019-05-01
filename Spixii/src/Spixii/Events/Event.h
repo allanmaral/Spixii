@@ -1,9 +1,8 @@
 #pragma once
 
-#include "../Core.h"
+#include "spxpch.h"
 
-#include <string>
-#include <functional>
+#include "Spixii/Core.h"
 
 namespace Spixii
 {
