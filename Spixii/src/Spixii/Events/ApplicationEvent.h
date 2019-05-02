@@ -12,7 +12,10 @@ namespace Spixii
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
         WindowResizeEvent(uint32_t width, uint32_t height)
-            : m_width(width), m_height(height) {}
+            : m_width(width)
+            , m_height(height)
+        {
+        }
 
         inline uint32_t GetWidth() const { return m_width; }
         inline uint32_t GetHeight() const { return m_height; }
@@ -29,7 +32,6 @@ namespace Spixii
         uint32_t m_height;
     };
 
-
     class SPIXII_API WindowCloseEvent : public Event
     {
     public:
@@ -45,7 +47,7 @@ namespace Spixii
         EVENT_CLASS_TYPE(ApplicationTick)
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
-            ApplicationTickEvent() = default;
+        ApplicationTickEvent() = default;
     };
 
     class SPIXII_API ApplicationUpdateEvent : public Event
@@ -63,6 +65,6 @@ namespace Spixii
         EVENT_CLASS_TYPE(ApplicationRender)
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
-            ApplicationRenderEvent() = default;
+        ApplicationRenderEvent() = default;
     };
-}
+}  // namespace Spixii

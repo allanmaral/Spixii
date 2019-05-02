@@ -7,10 +7,10 @@
 namespace Spixii
 {
 
-    class SPIXII_API WindowsWindow : public Window
+    class WindowsWindow : public Window
     {
     public:
-        WindowsWindow(const WindowProperties& prop);
+        WindowsWindow(const WindowProperties &prop);
         virtual ~WindowsWindow();
 
         void OnUpdate() override;
@@ -18,7 +18,7 @@ namespace Spixii
         inline uint32_t GetWidth() const { return m_properties.width; };
         inline uint32_t GetHeight() const { return m_properties.height; }
 
-        void SetEventCallback(const EventCallbackFn& callback) override { m_properties.eventCallback = callback; }
+        void SetEventCallback(const EventCallbackFn &callback) override { m_properties.eventCallback = callback; }
         void SetVSync(bool enabled) override;
         bool IsVSyncOn() const override;
 
@@ -33,6 +33,6 @@ namespace Spixii
         HWND m_windowHandle;
         WindowProperties m_properties;
     };
-}
+}  // namespace Spixii
 
 #endif

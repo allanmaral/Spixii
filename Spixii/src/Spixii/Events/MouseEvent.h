@@ -10,10 +10,13 @@ namespace Spixii
     public:
         EVENT_CLASS_TYPE(MouseMoved)
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
-    
+
     public:
         MouseMovedEvent(float x, float y)
-            : m_mouseX(x), m_mouseY(y) {}
+            : m_mouseX(x)
+            , m_mouseY(y)
+        {
+        }
 
         inline float GetX() const { return m_mouseX; }
         inline float GetY() const { return m_mouseY; }
@@ -38,7 +41,10 @@ namespace Spixii
 
     public:
         MouseScrolledEvent(float xOffset, float yOffset)
-            : m_xOffset(xOffset), m_yOffset(yOffset) {}
+            : m_xOffset(xOffset)
+            , m_yOffset(yOffset)
+        {
+        }
 
         inline float GetXOffset() const { return m_xOffset; }
         inline float GetYOffset() const { return m_yOffset; }
@@ -65,7 +71,9 @@ namespace Spixii
 
     protected:
         MouseButtonEvent(uint32_t button)
-            : m_button(button) {}
+            : m_button(button)
+        {
+        }
 
         uint32_t m_button;
     };
@@ -77,7 +85,9 @@ namespace Spixii
 
     public:
         MouseButtonPressedEvent(int button)
-            : MouseButtonEvent(button) {}
+            : MouseButtonEvent(button)
+        {
+        }
 
         std::string ToString() const override
         {
@@ -94,7 +104,9 @@ namespace Spixii
 
     public:
         MouseButtonReleasedEvent(int button)
-            : MouseButtonEvent(button) {}
+            : MouseButtonEvent(button)
+        {
+        }
 
         std::string ToString() const override
         {
@@ -103,5 +115,5 @@ namespace Spixii
             return ss.str();
         }
     };
-    
-}
+
+}  // namespace Spixii

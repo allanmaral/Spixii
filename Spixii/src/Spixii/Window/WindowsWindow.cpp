@@ -2,18 +2,18 @@
 
 #ifdef SPX_PLATFORM_WINDOWS
 
-#include "Spixii/Window/WindowsWindow.h"
 #include "Spixii/Log.h"
+#include "Spixii/Window/WindowsWindow.h"
 
 namespace Spixii
 {
 
-    Window* Window::Create(const WindowProperties& prop)
+    Window *Window::Create(const WindowProperties &prop)
     {
         return new WindowsWindow(prop);
     }
 
-    WindowsWindow::WindowsWindow(const WindowProperties& prop)
+    WindowsWindow::WindowsWindow(const WindowProperties &prop)
         : m_properties(prop)
     {
         Init();
@@ -32,16 +32,16 @@ namespace Spixii
         size_t titleSize = 0;
         mbstowcs_s(&titleSize, windowTitle, (size_t)256, m_properties.title.c_str(), 256);
 
-        WNDCLASSEX windowClass = { 0 };
-        windowClass.cbSize = sizeof(WNDCLASSEX);
-        windowClass.style = CS_HREDRAW | CS_VREDRAW;
-        windowClass.lpfnWndProc = WindowProc;
-        windowClass.hInstance = GetModuleHandle(NULL);
-        windowClass.hCursor = LoadCursor(NULL, IDC_ARROW);
+        WNDCLASSEX windowClass    = {0};
+        windowClass.cbSize        = sizeof(WNDCLASSEX);
+        windowClass.style         = CS_HREDRAW | CS_VREDRAW;
+        windowClass.lpfnWndProc   = WindowProc;
+        windowClass.hInstance     = GetModuleHandle(NULL);
+        windowClass.hCursor       = LoadCursor(NULL, IDC_ARROW);
         windowClass.lpszClassName = windowTitle;
         RegisterClassEx(&windowClass);
 
-        RECT windowRect = { 0, 0, static_cast<LONG>(m_properties.width), static_cast<LONG>(m_properties.height) };
+        RECT windowRect = {0, 0, static_cast<LONG>(m_properties.width), static_cast<LONG>(m_properties.height)};
         AdjustWindowRect(&windowRect, WS_OVERLAPPEDWINDOW, FALSE);
 
         m_windowHandle = CreateWindow(
@@ -62,15 +62,14 @@ namespace Spixii
 
     void WindowsWindow::Shutdown()
     {
-
     }
 
     void WindowsWindow::OnUpdate()
     {
         MSG msg = {};
-        while (PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE))
+        while(PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE))
         {
-            if (msg.message == WM_QUIT)
+            if(msg.message == WM_QUIT)
             {
                 // Handle QUIT differently??
             }
@@ -95,9 +94,9 @@ namespace Spixii
     // Main message handler
     LRESULT CALLBACK WindowsWindow::WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {
-        WindowsWindow* window = reinterpret_cast<WindowsWindow*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+        WindowsWindow *window = reinterpret_cast<WindowsWindow *>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
 
-        switch (message)
+        switch(message)
         {
         case WM_CREATE:
         {
@@ -105,7 +104,7 @@ namespace Spixii
             LPCREATESTRUCT pCreateStruct = reinterpret_cast<LPCREATESTRUCT>(lParam);
             SetWindowLongPtr(hWnd, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(pCreateStruct->lpCreateParams));
         }
-        return 0;
+            return 0;
 
         case WM_MOUSEMOVE:
         {
@@ -113,7 +112,7 @@ namespace Spixii
             const int y = HIWORD(lParam);
             SPX_INFO_CORE("Receivig an KeyDown envent: ({0}, {1})", x, y);
         }
-        return 0;
+            return 0;
 
         case WM_KEYDOWN:
             SPX_INFO_CORE("Receivig an KeyDown envent");
@@ -149,6 +148,6 @@ namespace Spixii
         // Handle any messages the switch statement didn't.
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
-}
+}  // namespace Spixii
 
 #endif

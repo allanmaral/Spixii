@@ -14,20 +14,24 @@ namespace Spixii
 
     protected:
         KeyEvent(uint32_t keyCode)
-            : m_keyCode(keyCode) {}
+            : m_keyCode(keyCode)
+        {
+        }
 
         int m_keyCode;
     };
-
 
     class SPIXII_API KeyPressedEvent : public KeyEvent
     {
     public:
         EVENT_CLASS_TYPE(KeyPressed)
-    
+
     public:
         KeyPressedEvent(uint32_t keyCode, uint32_t repeatCount)
-            : KeyEvent(keyCode), m_repeatCount(repeatCount) {}
+            : KeyEvent(keyCode)
+            , m_repeatCount(repeatCount)
+        {
+        }
 
         inline uint32_t GetRepeatCount() const { return m_repeatCount; }
 
@@ -49,8 +53,10 @@ namespace Spixii
 
     public:
         KeyReleasedEvent(uint32_t keyCode)
-            : KeyEvent(keyCode) {}
-        
+            : KeyEvent(keyCode)
+        {
+        }
+
         std::string ToString() const override
         {
             std::stringstream ss;
@@ -58,4 +64,4 @@ namespace Spixii
             return ss.str();
         }
     };
-}
+}  // namespace Spixii

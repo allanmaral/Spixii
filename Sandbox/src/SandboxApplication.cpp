@@ -7,19 +7,16 @@ class Sandbox : public Spixii::Application
 public:
     Sandbox()
     {
-
     }
 
     ~Sandbox()
     {
-
     }
-
 
 private:
 };
 
-Spixii::Application* Spixii::CreateApplication()
+Spixii::Application *Spixii::CreateApplication()
 {
     return new Sandbox();
 }
