@@ -2,9 +2,7 @@
 
 #include "Spixii/Application.h"
 
-#include "Spixii/Events/ApplicationEvent.h"
-#include "Spixii/Log.h"
-#include "Spixii/Window/Window.h"
+#define BIND_FUNCTION(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 namespace Spixii
 {
@@ -12,6 +10,8 @@ namespace Spixii
     Application::Application()
     {
         Log::Init();
+        m_window = std::unique_ptr<Window>(Window::Create());
+        m_window->SetEventCallback(BIND_FUNCTION(OnEvent));
     }
 
     Application::~Application()
@@ -20,12 +20,25 @@ namespace Spixii
 
     void Application::Run()
     {
-        std::unique_ptr<Window> window = std::unique_ptr<Window>(Window::Create());
-
-        while(true)
+        while(m_running)
         {
-            window->OnUpdate();
+            m_window->OnUpdate();
         }
+    }
+
+    void Application::OnEvent(Event &event)
+    {
+        EventDispatcher dispatcher(event);
+        dispatcher.Dispatch<WindowCloseEvent>(BIND_FUNCTION(OnWindowClose));
+
+        SPX_TRACE_CORE("{0}", event.ToString());
+    }
+
+    bool Application::OnWindowClose(WindowCloseEvent &event)
+    {
+        SPX_INFO_CORE("{0}", event.ToString());
+        m_running = false;
+        return false;
     }
 
 }  // namespace Spixii

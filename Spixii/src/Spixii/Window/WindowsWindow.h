@@ -7,6 +7,8 @@
 namespace Spixii
 {
 
+#define SPX_MAX_KEY_CODE 0x1ff
+
     class WindowsWindow : public Window
     {
     public:
@@ -32,6 +34,7 @@ namespace Spixii
     private:
         HWND m_windowHandle;
         WindowProperties m_properties;
+        LONG m_KeyRepeat[SPX_MAX_KEY_CODE];
     };
 }  // namespace Spixii
 

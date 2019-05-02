@@ -3,6 +3,10 @@
 #include "Spixii/Core.h"
 #include "Spixii/Window/Window.h"
 
+#include "Spixii/Events/ApplicationEvent.h"
+#include "Spixii/Log.h"
+#include "Spixii/Window/Window.h"
+
 namespace Spixii
 {
     template class SPIXII_API std::_Compressed_pair<std::default_delete<Spixii::Window>, Spixii::Window *, true>;
@@ -16,9 +20,13 @@ namespace Spixii
 
         void Run();
 
+        void OnEvent(Event &event);
+
     private:
         Application(const Application &) = delete;
         Application &operator=(const Application &) = delete;
+
+        bool OnWindowClose(WindowCloseEvent &event);
 
     private:
         std::unique_ptr<Window> m_window;

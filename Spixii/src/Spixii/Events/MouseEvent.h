@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Spixii/Events/Event.h"
+#include "Spixii/Input/InputKeys.h"
 
 namespace Spixii
 {
@@ -67,15 +68,15 @@ namespace Spixii
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 
     public:
-        inline uint32_t GetButton() const { return m_button; }
+        inline SPX_MOUSE_BUTTON GetButton() const { return m_button; }
 
     protected:
-        MouseButtonEvent(uint32_t button)
+        MouseButtonEvent(SPX_MOUSE_BUTTON button)
             : m_button(button)
         {
         }
 
-        uint32_t m_button;
+        SPX_MOUSE_BUTTON m_button;
     };
 
     class SPIXII_API MouseButtonPressedEvent : public MouseButtonEvent
@@ -84,7 +85,7 @@ namespace Spixii
         EVENT_CLASS_TYPE(MouseButtonPressed)
 
     public:
-        MouseButtonPressedEvent(int button)
+        MouseButtonPressedEvent(SPX_MOUSE_BUTTON button)
             : MouseButtonEvent(button)
         {
         }
@@ -103,7 +104,7 @@ namespace Spixii
         EVENT_CLASS_TYPE(MouseButtonReleased)
 
     public:
-        MouseButtonReleasedEvent(int button)
+        MouseButtonReleasedEvent(SPX_MOUSE_BUTTON button)
             : MouseButtonEvent(button)
         {
         }
