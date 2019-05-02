@@ -9,26 +9,26 @@
 namespace Spixii
 {
 
-	Application::Application()
-	{
-	}
+    Application::Application()
+    {
+    }
 
 
-	Application::~Application()
-	{
-	}
+    Application::~Application()
+    {
+    }
 
 
-	void Application::Run()
-	{
-		Log::Init();
+    void Application::Run()
+    {
+        Log::Init();
 
-		std::unique_ptr<Window> window = std::unique_ptr<Window>(Window::Create());
+        std::unique_ptr<Window> window = std::unique_ptr<Window>(Window::Create());
 
-		while (true)
-		{
-			window->OnUpdate();
-		}
-	}
+        while (true)
+        {
+            window->OnUpdate();
+        }
+    }
 
 }

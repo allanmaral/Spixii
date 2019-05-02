@@ -5,15 +5,15 @@
 class Sandbox : public Spixii::Application
 {
 public:
-	Sandbox()
-	{
+    Sandbox()
+    {
 
-	}
+    }
 
-	~Sandbox()
-	{
+    ~Sandbox()
+    {
 
-	}
+    }
 
 
 private:
@@ -21,5 +21,5 @@ private:
 
 Spixii::Application* Spixii::CreateApplication()
 {
-	return new Sandbox();
+    return new Sandbox();
 }

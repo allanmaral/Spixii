@@ -4,16 +4,15 @@
 
 namespace Spixii
 {
-	class SPIXII_API Application
-	{
-	public:
-		Application();
-		virtual ~Application();
+    class SPIXII_API Application
+    {
+    public:
+        Application();
+        virtual ~Application();
 
-		void Run();
-	};
+        void Run();
+    };
 
-	// Needs to be defined in the client
-	Application* CreateApplication();
+    // Needs to be defined in the client
+    Application* CreateApplication();
 }
-
