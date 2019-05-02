@@ -4,6 +4,8 @@
 #include "Spixii/Log.h"
 #include "Spixii/Events/ApplicationEvent.h"
 
+#include "Spixii/Window/Window.h"
+
 namespace Spixii
 {
 
@@ -21,17 +23,12 @@ namespace Spixii
 	{
 		Log::Init();
 
-		WindowResizeEvent e(1280, 720);
-		if (e.IsInCategory(EventCategoryApplication))
-		{
-			SPX_TRACE(e);
-		}
-		if (e.IsInCategory(EventCategoryInput))
-		{
-			SPX_ERROR(e);
-		}
+		std::unique_ptr<Window> window = std::unique_ptr<Window>(Window::Create());
 
-		while (true);
+		while (true)
+		{
+			window->OnUpdate();
+		}
 	}
 
 }

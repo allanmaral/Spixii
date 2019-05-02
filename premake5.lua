@@ -14,6 +14,7 @@ project "Spixii"
 	location "Spixii"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin/obj/" .. outputdir .. "/%{prj.name}")
@@ -35,14 +36,12 @@ project "Spixii"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
 		{
 			"SPX_PLATFORM_WINDOWS",
-			"SPX_BUILD_DLL",
-			"_WINDLL"
+			"SPX_BUILD_DLL"
 		}
 
 		postbuildcommands
@@ -52,20 +51,24 @@ project "Spixii"
 	
 	filter "configurations:Debug"
 		defines "SPX_DEBUG"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "SPX_RELEASE"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "SPX_DIST"
+		runtime "Release"
 		optimize "On"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin/obj/" .. outputdir .. "/%{prj.name}")
@@ -89,7 +92,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -99,12 +101,15 @@ project "Sandbox"
 	
 	filter "configurations:Debug"
 		defines "SPX_DEBUG"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "SPX_RELEASE"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "SPX_DIST"
+		runtime "Release"
 		optimize "On"

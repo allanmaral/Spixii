@@ -1,3 +1,6 @@
 [submodule "Spixii/ThirdParty/spdlog"]
 	path = Spixii/ThirdParty/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Spixii/ThirdParty/cereal"]
+	path = Spixii/ThirdParty/cereal
+	url = https://github.com/USCiLab/cereal
