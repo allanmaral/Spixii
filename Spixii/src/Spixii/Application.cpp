@@ -36,7 +36,6 @@ namespace Spixii
 
     bool Application::OnWindowClose(WindowCloseEvent &event)
     {
-        SPX_INFO_CORE("{0}", event.ToString());
         m_running = false;
         return false;
     }

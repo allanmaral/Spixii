@@ -10,6 +10,12 @@ workspace "Spixii"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["EASTL"] = "Spixii/ThirdParty/EASTL/include"
+IncludeDir["spdlog"] = "Spixii/ThirdParty/spdlog/include"
+
+include "Spixii/ThirdParty/EASTL"
+
 project "Spixii"
     location "Spixii"
     kind "SharedLib"
@@ -31,7 +37,13 @@ project "Spixii"
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/ThirdParty/spdlog/include"
+        "%{IncludeDir.spdlog}",
+        "%{IncludeDir.EASTL}"
+    }
+
+    links
+    {
+        "EASTL"
     }
 
     filter "system:windows"
@@ -81,7 +93,8 @@ project "Sandbox"
 
     includedirs
     {
-        "Spixii/ThirdParty/spdlog/include",
+        "%{IncludeDir.spdlog}",
+        "%{IncludeDir.EASTL}",
         "Spixii/src"
     }
 
