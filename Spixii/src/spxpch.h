@@ -3,8 +3,9 @@
 #include <functional>
 #include <memory>
 #include <sstream>
-
 #include <string>
+
+#include <cstdlib>
 
 // clang-format off
 #ifdef SPX_PLATFORM_WINDOWS

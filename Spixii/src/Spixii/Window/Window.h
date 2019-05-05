@@ -7,7 +7,7 @@
 
 namespace Spixii
 {
-    using EventCallbackFn = std::function<void(Event &)>;
+    typedef void(*EventCallbackFn)(Event &);
 
     struct WindowProperties
     {
@@ -34,6 +34,8 @@ namespace Spixii
     {
     public:
         virtual ~Window() = default;
+
+        virtual void Shutdown() = 0;
 
         virtual void OnUpdate() = 0;
 

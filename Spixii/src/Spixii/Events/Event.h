@@ -4,6 +4,8 @@
 
 #include "Spixii/Core.h"
 
+#include <EASTL/functional.h>
+
 namespace Spixii
 {
     enum class EventType
@@ -65,7 +67,8 @@ namespace Spixii
     class EventDispatcher
     {
         template <typename T>
-        using EventFn = std::function<bool(T &)>;
+        using EventFn = eastl::function<bool(T &)>;
+        //using EventFn = std::function<bool(T &)>;
 
     public:
         EventDispatcher(Event &event)

@@ -15,6 +15,8 @@ namespace Spixii
         WindowsWindow(const WindowProperties &prop);
         virtual ~WindowsWindow();
 
+        void Shutdown() override;
+
         void OnUpdate() override;
 
         inline uint32_t GetWidth() const { return m_properties.width; };
@@ -26,7 +28,6 @@ namespace Spixii
 
     private:
         void Init();
-        void Shutdown();
 
         // Needed to preocess window events
         static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);

@@ -1,36 +1,22 @@
 #pragma once
 
-#include "Spixii/Core.h"
-#include "Spixii/Window/Window.h"
+#include "Spixii/Events/Event.h"
 
-#include "Spixii/Events/ApplicationEvent.h"
-#include "Spixii/Log.h"
-#include "Spixii/Window/Window.h"
+struct SpixiiSystems;
 
 namespace Spixii
 {
-    template class SPIXII_API std::_Compressed_pair<std::default_delete<Spixii::Window>, Spixii::Window *, true>;
-    template class SPIXII_API std::unique_ptr<Spixii::Window, std::default_delete<Spixii::Window>>;
-
-    class SPIXII_API Application
+    class Application
     {
     public:
-        Application();
-        virtual ~Application();
+        virtual void OnStatup() = 0;
+        virtual void OnUpdate() = 0;
+        virtual void OnShutdown() = 0;
 
-        void Run();
+        virtual void OnEvent(Event &event) = 0;
 
-        void OnEvent(Event &event);
-
-    private:
-        Application(const Application &) = delete;
-        Application &operator=(const Application &) = delete;
-
-        bool OnWindowClose(WindowCloseEvent &event);
-
-    private:
-        std::unique_ptr<Window> m_window;
-        bool m_running = true;
+    public:
+        static SpixiiSystems s_engine;
     };
 
     // Needs to be defined in the client

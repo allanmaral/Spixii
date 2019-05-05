@@ -1,14 +1,27 @@
 #pragma once
 
+#ifndef SPIXII_VERSION
+#define SPIXII_VERSION 0
+#endif
+
+// clang-format off
 #ifdef SPX_PLATFORM_WINDOWS
-#ifdef SPX_BUILD_DLL
-#define SPIXII_API __declspec(dllexport)
+    #ifdef SPX_BUILD_EXE
+        #define SPIXII_API
+    #else
+        #ifdef SPX_BUILD_DLL
+            #define SPIXII_API __declspec(dllexport)
+        #else
+            #define SPIXII_API __declspec(dllimport)
+        #endif
+    #endif
 #else
-#define SPIXII_API __declspec(dllimport)
+    #error Platform not supported
 #endif
-#else
-#error Platform not supported
-#endif
+// clang-format on
+
+// MAX 100mb
+#define SPX_MAX_BUFFER_SIZE 100 * 1024 * 1024
 
 #ifdef SPX_DEBUG
 #define SPX_ENABLE_ASSERTS

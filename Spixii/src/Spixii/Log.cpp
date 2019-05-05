@@ -10,11 +10,13 @@ namespace Spixii
 
     void Log::Init()
     {
+#ifdef SPX_LOG_ENABLED
         spdlog::set_pattern("%^[%T] %n: %v%$");
         s_coreLogger = spdlog::stdout_color_mt("SPIXII");
         s_coreLogger->set_level(spdlog::level::trace);
 
         s_applicationLogger = spdlog::stdout_color_mt("APPLICATION");
         s_applicationLogger->set_level(spdlog::level::trace);
+#endif
     }
 }  // namespace Spixii
