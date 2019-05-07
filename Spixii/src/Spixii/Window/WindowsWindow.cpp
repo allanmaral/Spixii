@@ -25,7 +25,7 @@ namespace Spixii
         : m_properties(prop)
     {
         memset(m_KeyRepeat, 0, SPX_MAX_KEY_CODE);
-        Init();
+        Initialize();
     }
 
     WindowsWindow::~WindowsWindow()
@@ -33,7 +33,7 @@ namespace Spixii
         Shutdown();
     }
 
-    void WindowsWindow::Init()
+    void WindowsWindow::Initialize()
     {
         SPX_INFO_CORE("Creating a Windows window: {0} ({1} x {2})", m_properties.title, m_properties.width, m_properties.height);
 
@@ -137,9 +137,9 @@ namespace Spixii
 
         case WM_KEYDOWN:
         {
-            const uint32_t repeatCount    = lParam & 0xffff;
-            const int32_t scanCode        = (lParam >> 16) & 0x1ff;
-            const uint32_t firstTime      = (lParam >> 30) & 1;
+            const uint32 repeatCount    = lParam & 0xffff;
+            const int32 scanCode        = (lParam >> 16) & 0x1ff;
+            const uint32 firstTime      = (lParam >> 30) & 1;
             window->m_KeyRepeat[scanCode] = window->m_KeyRepeat[scanCode] * firstTime + repeatCount;
             KeyPressedEvent event((SPX_KEYBOARD_KEY)scanCode, window->m_KeyRepeat[scanCode]);
             window->m_properties.eventCallback(event);

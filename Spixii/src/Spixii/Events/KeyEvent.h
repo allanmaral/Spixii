@@ -28,13 +28,13 @@ namespace Spixii
         EVENT_CLASS_TYPE(KeyPressed)
 
     public:
-        KeyPressedEvent(SPX_KEYBOARD_KEY keyCode, uint32_t repeatCount)
+        KeyPressedEvent(SPX_KEYBOARD_KEY keyCode, uint32 repeatCount)
             : KeyEvent(keyCode)
             , m_repeatCount(repeatCount)
         {
         }
 
-        inline uint32_t GetRepeatCount() const { return m_repeatCount; }
+        inline uint32 GetRepeatCount() const { return m_repeatCount; }
 
         std::string ToString() const override
         {
@@ -44,7 +44,7 @@ namespace Spixii
         }
 
     private:
-        uint32_t m_repeatCount;
+        uint32 m_repeatCount;
     };
 
     class SPIXII_API KeyReleasedEvent : public KeyEvent

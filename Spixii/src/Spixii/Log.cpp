@@ -8,7 +8,7 @@ namespace Spixii
     std::shared_ptr<spdlog::logger> Log::s_coreLogger;
     std::shared_ptr<spdlog::logger> Log::s_applicationLogger;
 
-    void Log::Init()
+    void Log::Initialize()
     {
 #ifdef SPX_LOG_ENABLED
         spdlog::set_pattern("%^[%T] %n: %v%$");

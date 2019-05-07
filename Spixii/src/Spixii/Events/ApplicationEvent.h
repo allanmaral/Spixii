@@ -11,14 +11,14 @@ namespace Spixii
         EVENT_CLASS_TYPE(WindowsResize)
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
-        WindowResizeEvent(uint32_t width, uint32_t height)
+        WindowResizeEvent(uint32 width, uint32 height)
             : m_width(width)
             , m_height(height)
         {
         }
 
-        inline uint32_t GetWidth() const { return m_width; }
-        inline uint32_t GetHeight() const { return m_height; }
+        inline uint32 GetWidth() const { return m_width; }
+        inline uint32 GetHeight() const { return m_height; }
 
         std::string ToString() const override
         {
@@ -28,8 +28,8 @@ namespace Spixii
         }
 
     private:
-        uint32_t m_width;
-        uint32_t m_height;
+        uint32 m_width;
+        uint32 m_height;
     };
 
     class SPIXII_API WindowCloseEvent : public Event

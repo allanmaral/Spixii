@@ -2,14 +2,15 @@
 
 #include "Spixii/Events/Event.h"
 
-struct SpixiiSystems;
-
 namespace Spixii
 {
+    struct SpixiiSystems;
+
     class Application
     {
     public:
-        virtual void OnStatup() = 0;
+        virtual void Initialize() = 0;
+
         virtual void OnUpdate() = 0;
         virtual void OnShutdown() = 0;
 

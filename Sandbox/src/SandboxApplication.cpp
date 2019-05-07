@@ -1,18 +1,6 @@
 #define SPX_APPLICATION_IMPLEMENTATION
 #include "Spixii.h"
 
-#include <iostream>
-
-class foo
-{
-public:
-    foo(int a)
-        : m_a(a)
-    {
-    }
-    int m_a;
-};
-
 class Sandbox : public Spixii::Application
 {
 public:
@@ -24,7 +12,7 @@ public:
     {
     }
 
-    virtual void OnStatup() override
+    virtual void Initialize() override
     {
     }
 

@@ -11,7 +11,7 @@ namespace Spixii
     class Log
     {
     public:
-        static void Init();
+        static void Initialize();
 
         inline static std::shared_ptr<spdlog::logger> &GetCoreLogger() { return s_coreLogger; }
         inline static std::shared_ptr<spdlog::logger> &GetApplicationLogger() { return s_applicationLogger; }
@@ -20,10 +20,6 @@ namespace Spixii
         static std::shared_ptr<spdlog::logger> s_coreLogger;
         static std::shared_ptr<spdlog::logger> s_applicationLogger;
     };
-
-#ifdef SPX_BUILD_DLL
-    extern Log g_logger;
-#endif
 
 }  // namespace Spixii
 

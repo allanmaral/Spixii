@@ -19,15 +19,15 @@ namespace Spixii
 
         void OnUpdate() override;
 
-        inline uint32_t GetWidth() const { return m_properties.width; };
-        inline uint32_t GetHeight() const { return m_properties.height; }
+        inline uint32 GetWidth() const { return m_properties.width; };
+        inline uint32 GetHeight() const { return m_properties.height; }
 
         void SetEventCallback(const EventCallbackFn &callback) override { m_properties.eventCallback = callback; }
         void SetVSync(bool enabled) override;
         bool IsVSyncOn() const override;
 
     private:
-        void Init();
+        void Initialize();
 
         // Needed to preocess window events
         static LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);

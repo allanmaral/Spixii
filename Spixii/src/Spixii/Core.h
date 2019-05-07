@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Spixii/Base/Type.h"
+
 #ifndef SPIXII_VERSION
 #define SPIXII_VERSION 0
 #endif
