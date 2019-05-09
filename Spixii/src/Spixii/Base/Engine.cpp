@@ -1,8 +1,9 @@
 #include "spxpch.h"
 
 #include "Spixii/Application.h"
-#include "Spixii/Base/Platform/LibraryLoader.h"
 #include "Spixii/Base/Engine.h"
+#include "Spixii/Base/Platform/LibraryLoader.h"
+#include "Spixii/Base/Memory/FreeListAllocator.h"
 #include "Spixii/Events/ApplicationEvent.h"
 #include "Spixii/Events/KeyEvent.h"
 #include "Spixii/Events/MouseEvent.h"
@@ -24,16 +25,19 @@ namespace Spixii
     {
         // Initialize most of the engine sub-systems
         Log::Initialize();
+
+        s_globalAllocator = new (g_staticBuffer) FreeListAllocator(g_staticBuffer+sizeof(FreeListAllocator), SPX_MAX_BUFFER_SIZE-sizeof(FreeListAllocator));
+
         // TODO: File system
-        s_window = Window::Create();  // Properties should be read from file config (IMPLEMENT .INI maybe)
+        s_window = Window::Create(s_globalAllocator);  // Properties should be read from file config (IMPLEMENT .INI maybe)
         s_window->SetEventCallback(Engine::OnEvent);
 
         // Load application and exchange data
         s_application.sharedLibrary = LibraryLoader::LoadSharedLibrary(L"Sandbox.dll");
         f_handShakeFn handShakeFn   = (f_handShakeFn)LibraryLoader::GetProcedure(s_application.sharedLibrary,
                                                                                "HandShake");
-        SpixiiSystems sistemView = GetSystemView();
-        int result = handShakeFn(&sistemView, &s_application);
+        SpixiiSystems sistemView    = GetSystemView();
+        int           result        = handShakeFn(&sistemView, &s_application);
         SPX_ASSERT_CORE(result, "Could handshake shared library");
 
         s_application.application->Initialize();
@@ -42,7 +46,7 @@ namespace Spixii
     void Engine::Shutdown()
     {
         s_window->Shutdown();
-        delete s_window;  // TODO: Remove new and deletes
+        s_globalAllocator->makeDelete(s_window);
 
         f_shutdownFn shutdownFn = (f_shutdownFn)LibraryLoader::GetProcedure(s_application.sharedLibrary,
                                                                             "Shutdown");

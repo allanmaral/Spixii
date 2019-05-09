@@ -1,5 +1,6 @@
 #pragma once
 
+#include <assert.h>
 #include <functional>
 #include <memory>
 #include <sstream>

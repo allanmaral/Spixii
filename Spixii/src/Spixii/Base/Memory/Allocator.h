@@ -7,12 +7,11 @@ namespace Spixii
     class Allocator
     {
     public:
-        virtual void *Allocate(std::size_t size, std::size_t align) = 0;
-        virtual void Dealocate(void *p)                             = 0;
-        virtual std::size_t AllocatedSize(void *p)                  = 0;
+        virtual void * Allocate(uint64 size, uint64 align) = 0;
+        virtual void   Dealocate(void *p)                  = 0;
+        virtual uint64 AllocatedSize(void *p)              = 0;
 
-        //template <class T, class P1>
-        //T *makeNew(const P1 &p1) { return new (Allocate(sizeof(T), alignof(T))) T(p1); }
+        virtual ~Allocator() = default;
 
         template <class T, typename... Args>
         T *makeNew(const Args &... args) { return new(Allocate(sizeof(T), alignof(T))) T(args...); }
@@ -26,13 +25,9 @@ namespace Spixii
                 Dealocate(p);
             }
         }
-    };
 
-    class MallocAllocator : public Allocator
-    {
-    public:
-        void *Allocate(std::size_t size, std::size_t align) override;
-        void Dealocate(void *p) override;
-        std::size_t AllocatedSize(void *p) override;
+    protected:
+        static uint64 CalculatePadding(const uint64 baseAddress, const uint64 alignment);
+        static uint64 CalculatePaddingWithHeader(const uint64 baseAddress, const uint64 alignment, const uint64 headerSize);
     };
 }  // namespace Spixii

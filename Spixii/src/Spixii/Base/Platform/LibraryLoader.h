@@ -10,7 +10,7 @@ namespace Spixii
     class LibraryLoader
     {
     public:
-        static void *    LoadSharedLibrary(const wchar_t* libraryName);
+        static void *    LoadSharedLibrary(const wchar_t *libraryName);
         static void      ReleaseLibrary(void *library);
         static Procedure GetProcedure(void *library, const char *procedureName);
     };

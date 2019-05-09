@@ -4,25 +4,21 @@
 
 #include <malloc.h>
 
+#include "Spixii/Base/Engine.h"
 #include "Spixii/Base/Memory/Allocator.h"
+#include "Spixii/Log.h"
 
 namespace Spixii
 {
-    // 
-    extern char g_buffer[];
-
-    void *MallocAllocator::Allocate(std::size_t size, std::size_t align)
+    uint64 Allocator::CalculatePadding(const uint64 baseAddress, const uint64 alignment)
     {
-        return _aligned_malloc(align, size);
+        const uint64 offset = alignment - 1;
+        const uint64 alignedAddress = (baseAddress + offset) & ~(offset);
+        return alignedAddress - baseAddress;
     }
 
-    void MallocAllocator::Dealocate(void *p)
+    uint64 Allocator::CalculatePaddingWithHeader(const uint64 baseAddress, const uint64 alignment, const uint64 headerSize)
     {
-        _aligned_free(p);
-    }
-
-    std::size_t MallocAllocator::AllocatedSize(void *p)
-    {
-        return 0;
+        return headerSize + CalculatePadding(baseAddress+headerSize, alignment);
     }
 }  // namespace Spixii

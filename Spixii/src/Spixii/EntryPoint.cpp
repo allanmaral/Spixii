@@ -4,11 +4,7 @@
 
 #include "Spixii.h"
 
-
-
-typedef int(__cdecl *f_handShakeFn)(Spixii::SpixiiSystems *sys, Spixii::ApplicationSystems *app);
-
-Spixii::SpixiiSystems g_systems;
+Spixii::SpixiiSystems      g_systems;
 Spixii::ApplicationSystems g_application;
 
 int main(int argc, char **argv)
@@ -24,5 +20,6 @@ int main(int argc, char **argv)
 
     Spixii::Engine::Shutdown();
 
-    return 0;;
+    return 0;
+    ;
 }

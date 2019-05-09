@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Spixii/Application.h"
+#include "Spixii/Base/Engine.h"
 #include "Spixii/Core.h"
 #include "Spixii/Log.h"
 #include "Spixii/Window/Window.h"
-#include "Spixii/Base/Engine.h"
 
 #include "Spixii/Events/ApplicationEvent.h"
 #include "Spixii/Events/KeyEvent.h"

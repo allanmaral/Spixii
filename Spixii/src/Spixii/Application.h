@@ -10,8 +10,7 @@ namespace Spixii
     {
     public:
         virtual void Initialize() = 0;
-
-        virtual void OnUpdate() = 0;
+        virtual void OnUpdate()   = 0;
         virtual void OnShutdown() = 0;
 
         virtual void OnEvent(Event &event) = 0;
